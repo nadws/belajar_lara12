@@ -1,5 +1,6 @@
-import { LucideIcon } from 'lucide-react';
+
 import type { Config } from 'ziggy-js';
+import { LucideProps } from 'lucide-react';
 
 export interface Auth {
     user: User;
@@ -16,9 +17,10 @@ export interface NavGroup {
 }
 
 export interface NavItem {
+    id?: number; // Optional ID for items that might not have one
     title: string;
     href: string;
-    icon?: LucideIcon | null;
+     icon?: ForwardRefExoticComponent<LucideProps & RefAttributes<SVGSVGElement>> | null;
     isActive?: boolean;
 }
 
