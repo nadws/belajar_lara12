@@ -38,7 +38,13 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        [$message, $author] = str(Inspiring::quotes()->random())->explode('-');
+        $quote = collect([
+            'Stay hungry, stay foolish. - Steve Jobs',
+            'Simplicity is the ultimate sophistication. - Leonardo da Vinci',
+            'Code is like humor. When you have to explain it, it’s bad. - Cory House',
+        ])->random();
+
+        [$message, $author] = str($quote)->explode('-');
 
         return [
             ...parent::share($request),
@@ -52,7 +58,7 @@ class HandleInertiaRequests extends Middleware
                 'location' => $request->url(),
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
-            'navItems' => fn() => NavItem::orderBy('order')->get(['id', 'title', 'href', 'icon']),
+            'navItems' => fn() => NavItem::where('user_id', auth()->id())->orderBy('order')->get(['id', 'title', 'href', 'icon', 'user_id']),
         ];
     }
 }

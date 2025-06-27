@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('nav_items', function (Blueprint $table) {
+        Schema::create('notes', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('href');
-            $table->string('icon')->nullable(); // nama icon, ex: 'LayoutGrid'
-            $table->integer('order')->default(0);
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // foreign key to users table
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('nav_item_id')->nullable();
+            $table->string('title')->nullable();
+            $table->text('content')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('nav_items');
+        Schema::dropIfExists('notes');
     }
 };
