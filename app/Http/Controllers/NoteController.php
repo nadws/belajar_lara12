@@ -34,7 +34,7 @@ class NoteController extends Controller
             'title' => $r->title,
         ]);
 
-        return redirect()->route('dashboard', ['id' => $id, 'title' => $r->title])->with('success', 'Produk berhasil ditambahkan');
+        return redirect()->route('catatan', ['id' => $id, 'title' => $r->title])->with('success', 'Produk berhasil ditambahkan');
     }
     public function update_content(Request $r, $id)
     {
@@ -44,6 +44,6 @@ class NoteController extends Controller
             'content' => $r->content,
         ]);
 
-        return redirect()->route('dashboard', ['id' => $id, 'title' => $r->title])->with('success', 'Produk berhasil ditambahkan');
+        return redirect()->route('catatan', ['id' => $id, 'title' => $r->title])->with('success', 'Produk berhasil ditambahkan');
     }
 }

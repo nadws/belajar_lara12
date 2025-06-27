@@ -22,7 +22,7 @@ class NavItemController extends Controller
         $id_nav = NavItem::create([
             'title' => $request->judul,
             'icon' => $request->icon,
-            'href' => '/dashboard',
+            'href' => '/catatan',
             'order' => $order,
             'user_id' => auth()->id(),
         ]);
@@ -34,6 +34,6 @@ class NavItemController extends Controller
             'user_id' => auth()->id(),
         ]);
 
-        return redirect()->route('dashboard', ['id' => $id_nav->id, 'title' => $request->judul])->with('success', 'Produk berhasil ditambahkan');
+        return redirect()->route('catatan', ['id' => $id_nav->id, 'title' => $request->judul])->with('success', 'Produk berhasil ditambahkan');
     }
 }

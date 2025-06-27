@@ -12,7 +12,10 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
-    Route::get('/dashboard', [NoteController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', function () {
+        return Inertia::render('awal');
+    })->name('dashboard');
+    Route::get('/catatan', [NoteController::class, 'index'])->name('catatan');
     Route::post('/nav-items', [NavItemController::class, 'store'])->name('nav-items.store');
     Route::post('/update/{id}', [NoteController::class, 'update'])->name('update');
     Route::post('/update_content/{id}', [NoteController::class, 'update_content'])->name('update_content');
